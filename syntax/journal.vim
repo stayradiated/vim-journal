@@ -10,10 +10,13 @@ syntax region journalPrivateNote start=/{{{/ end=/}}}/
 
 " calendars
 
-syntax match journalCalLine /---\+/
-syntax match journalCalDay /\./
-syntax match journalCalEventA /a/
-syntax match journalCalEventB /b/
-syntax match journalCalEventC /c/
-syntax match journalCalEventN /n/
-syntax match journalCalEventT /t/
+syntax region journalCal start=/\V[calendar]/ end=/\V[\/calendar]/ contains=journalCalLine,journalCalDay,journalCalMonth,journalCalEventA,journalCalEventB,journalCalEventC,journalCalEventN,journalCalEventT
+
+syntax match journalCalLine   /---\+/       contained
+syntax match journalCalDay    /\./          contained
+syntax match journalCalMonth  /\v\w{3,}/    contained
+syntax match journalCalEventA /\v<a>/       contained
+syntax match journalCalEventB /\v<b>/       contained
+syntax match journalCalEventC /\v<c>/       contained
+syntax match journalCalEventN /\v<n>/       contained
+syntax match journalCalEventT /\v<t>/       contained
